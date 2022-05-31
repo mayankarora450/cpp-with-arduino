@@ -1,36 +1,27 @@
 #include <Arduino.h>
-/* When does the destructor get called?
-A destructor is automatically called when:
-1) The program finished execution.
-2) When a scope (the { } parenthesis) containing local variable ends.
-*/
-class destructor
+
+class A
 {
-public:
-  destructor()
-  {
-    Serial.println("hello from constructor");
+  public:
+  A(){
+    Serial.println("A constructor called");
   }
-  ~destructor()
-  {
-    Serial.println("hello from destructor");
+int var=5;
+};
+
+class B:public A{
+  public:
+  B(){
+    Serial.println("B constructor called");
   }
-  void display()
-  {
-    Serial.println("hello");
-  }
-  void display2()
-  {
-    Serial.println("hello2");
-  }
+  int var2=10;
 };
 void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  destructor obj;
-  obj.display();
-  obj.display2();
+B obj;
+Serial.println(obj.var2);
 }
 
 void loop()
